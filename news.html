@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News — Wendy Waring</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f2f2f2;
+      color: #111;
+    }
+
+    /* HEADER */
+
+    .header {
+      max-width: 1200px;
+      margin: auto;
+      padding: 8px 40px 2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .title img {
+      width: 255px;
+      mix-blend-mode: multiply;
+    }
+
+    .social {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-end;
+    }
+
+    .social img {
+      width: 22px;
+    }
+
+    .divider {
+      max-width: 1200px;
+      margin: 4px auto;
+      border-top: 1px solid #333;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 4px 40px 8px;
+      position: relative;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      max-width: 900px;
+      font-size: 18px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #111;
+    }
+
+    /* HAMBURGER BUTTON */
+
+    .menu-toggle {
+      display: none;
+      font-size: 32px;
+      cursor: pointer;
+      user-select: none;
+      position: absolute;
+      right: 40px;
+      top: 0;
+    }
+
+    /* CONTENT CARD */
+
+    .content {
+      max-width: 850px;
+      margin: 50px auto;
+      padding: 45px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .section-title {
+      font-style: italic;
+      font-size: 22px;
+      margin-top: 30px;
+    }
+
+    /* TABLE DESKTOP */
+
+    .events-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .events-table th {
+      text-align: left;
+      border-bottom: 2px solid #333;
+      padding: 14px 10px;
+      font-size: 17px;
+    }
+
+    .events-table td {
+      padding: 16px 10px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+    }
+
+    /* MOBILE EVENT CARDS */
+
+    .event-cards {
+      display: none;
+    }
+
+    .event {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 18px;
+      margin-top: 18px;
+      background: #fafafa;
+    }
+
+    .event-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:800px) {
+
+      .content {
+        margin: 30px 16px;
+        padding: 28px;
+        font-size: 17px;
+      }
+
+      .events-table {
+        display: none;
+      }
+
+      .event-cards {
+        display: block;
+      }
+
+      /* SHOW HAMBURGER */
+
+      .menu-toggle {
+        display: block;
+      }
+
+      /* MOBILE MENU */
+
+      .menu {
+        display: none;
+        flex-direction: column;
+        gap: 16px;
+        background: #f2f2f2;
+        padding-top: 50px;
+        text-align: right;
+      }
+
+      .menu.active {
+        display: flex;
+      }
+
+      .social {
+        align-items: center;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+
+    <div class="title">
+      <img src="V2 Draft Gothic W.png">
+    </div>
+
+    <div class="social">
+      <a href="https://www.instagram.com/wendy.e.waring/" target="_blank">
+        <img src="insta_icon.jpg">
+      </a>
+
+      <a href="https://www.goodreads.com/author/show/2065491.Wendy_Waring" target="_blank">
+        <img src="goodreads_icon.png">
+      </a>
+
+      <a href="https://bsky.app/profile/wendywaring.bsky.social" target="_blank">
+        <img src="bluesky_icon.jpg">
+      </a>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+
+    <!-- HAMBURGER -->
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
+
+    <!-- MENU -->
+
+    <div class="menu" id="mobileMenu">
+      <a href="index.html">Welcome</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="works.html">Works</a>
+      <a href="news.html">News</a>
+    </div>
+
+  </nav>
+
+  <div class="divider"></div>
+
+  <div class="content">
+
+    <p>
+      I started to teach before I could vote. I’ve taught creative writing,
+      literary studies and gender studies in universities around the world.
+      Get in touch if you’d like a list of the writing workshops I offer,
+      or if you have an event where you’d think I’d be a good fit.
+    </p>
+
+    <div class="section-title">Events</div>
+
+    <!-- Desktop table -->
+
+    <table class="events-table">
+
+      <tr>
+        <th>Event</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Notes</th>
+      </tr>
+
+      <tr>
+        <td>Canadian launch of The Hunger of Those Who Built It</td>
+        <td>12 September 2026</td>
+        <td>Bookstore, Toronto</td>
+        <td>Address address — Take the A train</td>
+      </tr>
+
+      <tr>
+        <td>Paris launch of The Hunger of Those Who Built It</td>
+        <td>15 October 2026</td>
+        <td>Abbey Bookshop, Rue de la Parcheminerie</td>
+        <td>Métro Saint Sulpice</td>
+      </tr>
+
+    </table>
+
+    <!-- Mobile stacked cards -->
+
+    <div class="event-cards">
+
+      <div class="event">
+        <div class="event-title">
+          Canadian launch of The Hunger of Those Who Built It
+        </div>
+
+        <div>
+          <span class="label">Date:</span>
+          12 September 2026
+        </div>
+
+        <div>
+          <span class="label">Location:</span>
+          Bookstore, Toronto
+        </div>
+
+        <div>
+          <span class="label">Notes:</span>
+          Address address — Take the A train
+        </div>
+      </div>
+
+      <div class="event">
+
+        <div class="event-title">
+          Paris launch of The Hunger of Those Who Built It
+        </div>
+
+        <div>
+          <span class="label">Date:</span>
+          15 October 2026
+        </div>
+
+        <div>
+          <span class="label">Location:</span>
+          Abbey Bookshop, Rue de la Parcheminerie
+        </div>
+
+        <div>
+          <span class="label">Notes:</span>
+          Métro Saint Sulpice
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("active");
+    }
+  </script>
+
+</body>
+
+</html>

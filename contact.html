@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Wendy Waring</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f2f2f2;
+            color: #111;
+        }
+
+        /* HEADER */
+
+        .header {
+            max-width: 1200px;
+            margin: auto;
+            padding: 6px 40px 0;
+        }
+
+        .title img {
+            width: 255px;
+            mix-blend-mode: multiply;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            max-width: 1200px;
+            margin: 8px auto;
+            border-top: 1px solid #333;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 6px 40px;
+            position: relative;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            font-size: 18px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #111;
+        }
+
+        /* HAMBURGER BUTTON */
+
+        .menu-toggle {
+            display: none;
+            font-size: 32px;
+            cursor: pointer;
+            user-select: none;
+            position: absolute;
+            right: 40px;
+            top: 0;
+        }
+
+        /* CONTACT CENTERED */
+
+        .contact-wrapper {
+            max-width: 700px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 0 40px;
+        }
+
+        .contact-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .intro {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .email {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* FORM */
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        input,
+        textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+
+        button {
+            background: black;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* SOCIAL */
+
+        .social-title {
+            margin-top: 30px;
+            font-size: 18px;
+        }
+
+        .social img {
+            width: 34px;
+            margin: 15px 10px 0 10px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px) {
+
+            /* SHOW HAMBURGER */
+
+            .menu-toggle {
+                display: block;
+            }
+
+            /* MOBILE MENU */
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 16px;
+                background: #f2f2f2;
+                padding-top: 50px;
+                text-align: right;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .contact-box {
+                padding: 25px;
+            }
+
+            .email {
+                font-size: 18px;
+                word-break: break-word;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="title">
+            <img src="V2 Draft Gothic W.png">
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <!-- HAMBURGER -->
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            ☰
+        </div>
+
+        <!-- MENU -->
+
+        <div class="menu" id="mobileMenu">
+            <a href="index.html">Welcome</a>
+            <a href="about.html">About</a>
+            <a href="Contact.html">Contact</a>
+            <a href="works.html">Works</a>
+            <a href="News.html">News</a>
+        </div>
+
+    </nav>
+
+    <div class="divider"></div>
+
+    <section class="contact-wrapper">
+
+        <div class="contact-box">
+
+            <p class="intro">
+                Interested in a book club visit? Have a question about rights? Want a curated walk in Paris?
+                Want my newsletter, right in your inbox?
+            </p>
+
+            <p class="email">
+                Send me a message — <strong>contact@wendy-waring.com</strong>
+            </p>
+
+            <form action="mailto:contact@wendy-waring.com" method="post" enctype="text/plain">
+                <input name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" rows="6" placeholder="Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+
+            <div class="social-title">Find me online:</div>
+
+            <div class="social">
+                <a href="https://www.instagram.com/wendy.e.waring/" target="_blank">
+                    <img src="insta_icon.jpg">
+                </a>
+
+                <a href="https://www.goodreads.com/author/show/2065491.Wendy_Waring" target="_blank">
+                    <img src="goodreads_icon.png">
+                </a>
+
+                <a href="https://bsky.app/profile/wendywaring.bsky.social" target="_blank">
+                    <img src="bluesky_icon.jpg">
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("mobileMenu").classList.toggle("active");
+        }
+    </script>
+
+</body>
+
+</html>
