@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="fav_icon.png">
+
+    <style>
+        /* =========================================================
+           ADVANCE PRAISE
+           ========================================================= */
+
+        .advance-praise {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .advance-praise h4 {
+            margin-top: 0;
+            margin-bottom: 4px;
+            font-size: 1.5em;
+        }
+
+        /* =========================================================
+           SLIDER
+           ========================================================= */
+
+        .praise-slider {
+            position: relative;
+            width: 100%;
+            padding: 0 38px;
+            box-sizing: border-box;
+        }
+
+        .praise-slider input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* =========================================================
+           SLIDES
+           ========================================================= */
+
+        .praise-slides {
+            position: relative;
+            display: grid;
+            width: 100%;
+        }
+
+        .praise-slide {
+            grid-column: 1;
+            grid-row: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease;
+            margin: 0;
+            padding: 0;
+        }
+
+        .praise-slide p {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        #praise-1:checked~.praise-slides .praise-slide-1,
+        #praise-2:checked~.praise-slides .praise-slide-2,
+        #praise-3:checked~.praise-slides .praise-slide-3,
+        #praise-4:checked~.praise-slides .praise-slide-4,
+        #praise-5:checked~.praise-slides .praise-slide-5 {
+            position: relative;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* =========================================================
+           ARROWS
+           ========================================================= */
+
+        .praise-arrows {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        .praise-arrows>div {
+            display: none;
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        #praise-1:checked~.praise-arrows .arrows-1,
+        #praise-2:checked~.praise-arrows .arrows-2,
+        #praise-3:checked~.praise-arrows .arrows-3,
+        #praise-4:checked~.praise-arrows .arrows-4,
+        #praise-5:checked~.praise-arrows .arrows-5 {
+            display: block;
+        }
+
+        /* =========================================================
+           CHEVRON BUTTONS
+           ========================================================= */
+
+        .praise-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 30px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 1;
+
+            color: #777;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+
+            padding: 0;
+            margin: 0;
+
+            cursor: pointer;
+            user-select: none;
+
+            pointer-events: auto;
+            z-index: 40;
+
+            transition: color 0.15s ease, transform 0.15s ease;
+        }
+
+        .praise-arrow:hover {
+            color: #A349A4;
+        }
+
+        .praise-arrow:active {
+            transform: translateY(calc(-50% + 1px));
+        }
+
+        .praise-arrow-left {
+            left: 0;
+        }
+
+        .praise-arrow-right {
+            right: 0;
+        }
+
+        /* =========================================================
+           COLOURED PRAISE TEXT
+           ========================================================= */
+
+        .praise-green {
+            color: #22B14C;
+            font-weight: bold;
+        }
+
+        .praise-blue {
+            color: #00A2E8;
+            font-weight: bold;
+        }
+
+        .praise-purple {
+            color: #A349A4;
+            font-weight: bold;
+        }
+
+        .praise-indigo {
+            color: #3F48CC;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           REVIEWER CREDIT
+           ========================================================= */
+
+        .praise-credit {
+            margin-top: 8px !important;
+            margin-bottom: 0 !important;
+        }
+
+        .praise-author {
+            color: #A349A4;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           A SAMPLER
+           ========================================================= */
+
+        .sampler-title {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .sampler-title h4 {
+            margin-top: 0 !important;
+            margin-bottom: 8px !important;
+        }
+
+        /* =========================================================
+           MOBILE
+           ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .praise-slider {
+                padding-left: 32px;
+                padding-right: 32px;
+            }
+
+            .praise-arrow {
+                width: 20px;
+                height: 26px;
+                font-size: 25px;
+                font-weight: bold;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+    <header class="header">
+
+        <div class="title">
+            <img src="V2 Draft Gothic W.png" alt="Wendy Waring">
+        </div>
+
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+
+        <label for="menu-toggle" class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="menu-desktop">
+            <a href="index.html">Welcome</a>
+            <a href="works.html">Works</a>
+            <a href="contact.html">Contact</a>
+            <a href="news.html">News</a>
+        </nav>
+
+        <div class="social">
+
+            <a href="https://www.instagram.com/wendy.e.waring/" target="_blank" rel="noopener noreferrer">
+                <img src="insta_icon.jpg" alt="Instagram">
+            </a>
+
+            <a href="https://www.goodreads.com/author/show/2065491.Wendy_Waring" target="_blank"
+                rel="noopener noreferrer">
+                <img src="goodreads_icon.png" alt="Goodreads">
+            </a>
+
+            <a href="https://bsky.app/profile/wendywaring.bsky.social" target="_blank" rel="noopener noreferrer">
+                <img src="bluesky_icon.jpg" alt="Bluesky">
+            </a>
+
+        </div>
+
+        <nav class="mobile-menu">
+            <a href="index.html">Welcome</a>
+            <a href="works.html">Works</a>
+            <a href="contact.html">Contact</a>
+            <a href="news.html">News</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================================================
+     CONTENT
+     ========================================================= -->
+
+    <div class="content">
+
+        <!-- =====================================================
+         BOOK AREA
+         ===================================================== -->
+
+        <div class="book-layout">
+
+            <!-- ================= BOOK COVER ================= -->
+
+            <div class="book-cover">
+
+                <a href="https://www.stelliform.press/index.php/product/the-hunger-of-those-who-built-it/"
+                    target="_blank" rel="noopener noreferrer">
+
+                    <img src="cover-photo.jpg" alt="Book cover">
+
+                </a>
+
+            </div>
+
+
+            <!-- ================= BOOK TEXT ================= -->
+
+            <div class="book-content">
+
+                <h1 class="title-red">
+                    The Hunger of Those Who Built It
+                </h1>
+
+                <p>
+                    In this near-future tale of second-chance redemption set in Paris, two sisters—their relationship
+                    tested by a dark family secret—face off as they battle climate catastrophe in very different ways. 
+                    Hunger is the story of Diane Griffiths, a sustainability visionary with blinders, who wants to feed
+                    the world; Helen, her clandestine sister, who wants to change it; Alain, Diane’s lover, an engineer of
+                    history with a Parisian pedigree and a secret Maghreb heritage; and Lou, Diane’s niece and Helen's
+                    daughter, a queer rebel and a keeper of hope.
+                </p>
+
+
+                <!-- ================= BUY LINKS ================= -->
+
+                <p class="buy-links">
+
+                    <span class="buy-secondary">
+
+                        <strong>
+                            Buy this novel
+
+                            <a class="publisher-link"
+                                href="https://stelliform.press/index.php/product/the-hunger-of-those-who-built-it/"
+                                target="_blank" rel="noopener noreferrer">
+                                from the publisher
+                            </a>
+
+                        </strong>
+
+                    </span>
+
+                    <br>
+
+                    <span class="amazon-text">
+                        Order it from your favourite independent bookstore. Or buy it
+                    </span>
+
+                    <a class="amazon-link" href="https://a.co/d/00E1b9bw" target="_blank" rel="noopener noreferrer">
+                        <strong>here</strong>
+                    </a>
+
+                    <span class="amazon-text">
+                        if you must.
+                    </span>
+
+                </p>
+
+
+                <!-- =================================================
+                 ADVANCE PRAISE
+                 ================================================= -->
+
+                <div class="advance-praise">
+
+                    <h4 class="title-red">
+                        Advance Praise
+                    </h4>
+
+
+                    <div class="praise-slider">
+
+                        <!-- ================= CONTROLS ================= -->
+
+                        <input type="radio" name="advance-praise" id="praise-1" checked>
+
+                        <input type="radio" name="advance-praise" id="praise-2">
+
+                        <input type="radio" name="advance-praise" id="praise-3">
+
+                        <input type="radio" name="advance-praise" id="praise-4">
+
+                        <input type="radio" name="advance-praise" id="praise-5">
+
+
+                        <!-- =================================================
+                         PRAISE SLIDES
+                         ================================================= -->
+
+                        <div class="praise-slides">
+
+
+                            <!-- =================================================
+                             EMMA DONOGHUE
+                             ================================================= -->
+
+                            <div class="praise-slide praise-slide-1">
+
+                                <p>
+                                    <span class="praise-green">
+                                        <strong>
+                                            Wowza. This post-apocalyptic Parisian
+                                            eco-thriller blew me away.
+                                        </strong>
+                                    </span>
+                                </p>
+
+                                <p>
+                                    “The title of <i>The Hunger of Those Who Built It</i> is a quote from Ursula Le
+                                    Guin, and this smart, plausible, moving eco-thriller shows Wendy Waring working in the
+                                    grandly ambitious political and intellectual tradition of Le Guin, making sense of
+                                    our past and our possible futures. I was riveted by this all-too-believable tale of
+                                    post-apocalyptic struggle between corporate overlords and undercover radicals, which
+                                    also manages to work as a
+                                    <span class="praise-blue">
+                                        <strong>
+                                            heartfelt family drama and a love letter to Paris
+                                        </strong>
+                                    </span>.”
+                                </p>
+
+                                <p class="praise-credit">
+
+                                    <span class="praise-author">
+                                        Emma Donoghue
+                                    </span>
+
+                                    author of <i>Room</i>.
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- =================================================
+                             CHRISTINE HIGDON
+                             ================================================= -->
+
+                            <div class="praise-slide praise-slide-2">
+
+                                <p>
+                                    “Waring brings us a
+                                    <span class="praise-blue">
+                                        <strong>
+                                            suspenseful, intelligent, and hopeful tale about
+                                            climate action
+                                        </strong>
+                                    </span>
+                                    and who reaps its benefits.
+                                    <span class="praise-green">
+                                        <strong>
+                                            This is a book for our times
+                                        </strong>
+                                    </span>.”
+                                </p>
+
+                                <p>
+                                    “In <i>The Hunger of Those Who Built It</i>, Wendy Waring brilliantly poses that
+                                    age-old question: can change happen by working from within? Do we just gently bend
+                                    the rules of the old order, or must those who want to see a better world challenge
+                                    everything about the status quo, sometimes by any means necessary? Two sisters, Diane
+                                    and Helen, estranged for years, are both bent on saving the planet. Diane, architect of
+                                    a green community in Paris, France,is convinced that her project will be a model for
+                                    urban sustainability and food security throughout the world. Helen thinks that Diane
+                                    is just helping her corporate bosses rearrange the deck chairs on the Titanic. Set in
+                                    the near future, Waring brings us a suspenseful, intelligent, and hopeful tale about
+                                    climate action and who reaps its benefits. This is a book for our times.”
+                                </p>
+
+                                <p class="praise-credit">
+
+                                    <span class="praise-author">
+                                        Christine Higdon
+                                    </span>
+
+                                    author of <i>The Very Marrow of Our Bones</i>.
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- =================================================
+                             TESSA MCWATT
+                             ================================================= -->
+
+                            <div class="praise-slide praise-slide-3">
+
+                                <p>
+                                    “Paris, 2049. Snowstorms, flooded streets, greenhouse humidity, weathered ancient
+                                    stone. In this
+                                    <span class="praise-indigo">
+                                        <strong>
+                                            sensual portrayal of ecological collapse
+                                        </strong>
+                                    </span>,
+                                    the only hope is to rescue the world from the systems that claim to protect it. Save
+                                    seeds, remember one another, refuse silence. All the things that we must do now too.”
+                                </p>
+
+                                <p>
+                                    ‘I'm here for hope,’ declares one of the main characters, early on. And for the hope
+                                    is exactly why you should
+                                    <span class="praise-blue">
+                                        <strong>
+                                            read this compelling, lyrical novel
+                                        </strong>
+                                    </span>.”
+                                </p>
+
+                                <p class="praise-credit">
+
+                                    <span class="praise-author">
+                                        Tessa McWatt
+                                    </span>
+
+                                    author of <i>The Snag: A Mother, A Forest and Wild Grief</i>.
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- =================================================
+                             GOOD READING
+                             ================================================= -->
+
+                            <div class="praise-slide praise-slide-4">
+
+                                <p>
+                                    “Waring has the unique ability to imagine a world so precisely, so believably, that it
+                                    would be a surprise if it didn’t materialise. Waring’s
+                                    <span class="praise-indigo">
+                                        <strong>
+                                            seductively spellbinding writing
+                                        </strong>
+                                    </span>
+                                    comes from the blending of intellect, imagination and formidable talent. This is the
+                                    work of a seasoned writer…
+                                    <span class="praise-blue">
+                                        <strong>
+                                            Debuts aren’t supposed to be this good
+                                        </strong>
+                                    </span>.”
+                                </p>
+
+                                <p class="praise-credit">
+
+                                    <span class="praise-author">
+                                        Good Reading magazine
+                                    </span>.
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- =================================================
+                             PUBLISHERS WEEKLY
+                             ================================================= -->
+
+                            <div class="praise-slide praise-slide-5">
+
+                                <p>
+                                    “Waring’s
+                                    <span class="praise-blue">
+                                        <strong>
+                                            thought-provoking debut ... is sure to linger in
+                                            readers’ minds
+                                        </strong>
+                                    </span>.”
+                                </p>
+
+                                <p class="praise-credit">
+
+                                    <a href="https://www.publishersweekly.com/9781998466054" target="_blank"
+                                        rel="noopener noreferrer">
+                                        Publishers Weekly
+                                    </a>.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================================
+                         CHEVRON ARROWS
+                         ================================================= -->
+
+                        <div class="praise-arrows">
+
+                            <!-- 1 -->
+
+                            <div class="arrows-1">
+
+                                <label for="praise-5" class="praise-arrow praise-arrow-left"
+                                    aria-label="Previous praise">
+                                    &#10094;
+                                </label>
+
+                                <label for="praise-2" class="praise-arrow praise-arrow-right" aria-label="Next praise">
+                                    &#10095;
+                                </label>
+
+                            </div>
+
+
+                            <!-- 2 -->
+
+                            <div class="arrows-2">
+
+                                <label for="praise-1" class="praise-arrow praise-arrow-left"
+                                    aria-label="Previous praise">
+                                    &#10094;
+                                </label>
+
+                                <label for="praise-3" class="praise-arrow praise-arrow-right" aria-label="Next praise">
+                                    &#10095;
+                                </label>
+
+                            </div>
+
+
+                            <!-- 3 -->
+
+                            <div class="arrows-3">
+
+                                <label for="praise-2" class="praise-arrow praise-arrow-left"
+                                    aria-label="Previous praise">
+                                    &#10094;
+                                </label>
+
+                                <label for="praise-4" class="praise-arrow praise-arrow-right" aria-label="Next praise">
+                                    &#10095;
+                                </label>
+
+                            </div>
+
+
+                            <!-- 4 -->
+
+                            <div class="arrows-4">
+
+                                <label for="praise-3" class="praise-arrow praise-arrow-left"
+                                    aria-label="Previous praise">
+                                    &#10094;
+                                </label>
+
+                                <label for="praise-5" class="praise-arrow praise-arrow-right" aria-label="Next praise">
+                                    &#10095;
+                                </label>
+
+                            </div>
+
+
+                            <!-- 5 -->
+
+                            <div class="arrows-5">
+
+                                <label for="praise-4" class="praise-arrow praise-arrow-left"
+                                    aria-label="Previous praise">
+                                    &#10094;
+                                </label>
+
+                                <label for="praise-1" class="praise-arrow praise-arrow-right" aria-label="Next praise">
+                                    &#10095;
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================================
+         A SAMPLER
+         ========================================================= -->
+
+        <div class="sampler-title">
+
+            <h4 class="title-red">
+                More Words Online
+            </h4>
+
+        </div>
+
+
+        <!-- =========================================================
+         LOWER SECTION
+         ========================================================= -->
+
+        <div class="lower-layout">
+
+
+            <!-- ================= SHORT FICTION ================= -->
+
+            <div class="short-fiction">
+
+                <h2 class="section-title">
+                    Short Fiction
+                </h2>
+
+                <p>
+
+                    <a href="https://archive.org/details/interzone-1982/Interzone%20%281982%20-%29/Interzone%20207%20%282006-12%29/page/n53/mode/2up"
+                        target="_blank" rel="noopener noreferrer">
+                        “Stonework”
+                    </a>
+
+                    in <i>Interzone</i>, 
+
+                    <span class="quote-blue">
+                        “a wonderful window on an arcane universe”
+                    </span>
+
+                    Paul J. Uitzi, <i>TangentOnline</i>.
+
+                </p>
+
+
+                <p>
+
+                    <a href="youre_memory_from_49.pdf" target="_blank" rel="noopener noreferrer">
+                        “You’re memory”
+                    </a>
+
+                    in <i>Westerly</i>.
+
+                    “The original fiction in this issue is a little disappointing, with
+
+                    <span class="quote-purple">
+                        the notable exception of Wendy Waring’s bijou, ‘You’re memory’
+                    </span>”
+
+                    — Michael McGirr,<i>Sydney Morning Herald</i>.
+
+                </p>
+
+            </div>
+
+
+            <!-- ================= MEDIA ================= -->
+
+            <div class="media">
+
+                <h2 class="section-title">
+                    Media
+                </h2>
+
+                <div class="media-box">
+
+                    <a href="https://www.youtube.com/watch?v=TBDtOJ1ZhDQ" target="_blank" rel="noopener noreferrer">
+
+                        <img src="YT_still.png" alt="YouTube video">
+
+                    </a>
+
+
+                    <div class="media-text">
+
+                        <p>
+
+                            <a href="https://www.youtube.com/watch?v=TBDtOJ1ZhDQ" target="_blank"
+                                rel="noopener noreferrer">
+                                Youtube video:
+                            </a>
+
+                            Reading <i>The Hunger of Those Who Built It</i>
+                            for the ‘Edmonton in 2030’ Worldcon Bid Party.
+
+                        </p>
+
+
+                        <p>
+
+                            Podcast:
+
+                            <a href="https://podcasts.apple.com/us/podcast/alien-tears-wendy-waring/id297447334?i=1000383121720"
+                                target="_blank" rel="noopener noreferrer">
+                                Reading ‘Alien Tears’
+                            </a>.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
